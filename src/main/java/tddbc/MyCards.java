@@ -3,7 +3,7 @@ package tddbc;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Cards {
+public class MyCards {
 
 //    private final int one;
 //    private final int two;
@@ -13,7 +13,7 @@ public class Cards {
 
     private final Set<Integer> cards;
 
-    public Cards(int one, int two, int three, int four, int five) {
+    public MyCards(int one, int two, int three, int four, int five) {
         cards = new HashSet<>();
         cards.add(one);
         cards.add(two);

@@ -9,7 +9,7 @@ class SampleSpec extends Specification {
     def "カードが #one,#two,#three,#four,#five であるとき、#result になること"() {
 
         given:
-        def sut = new Cards(one,two,three,four,five)
+        def sut = new MyCards(one,two,three,four,five)
 
         when:
         PorkerHand actual = sut.whatHand()
