@@ -1,35 +1,27 @@
-package tddbc;
+package tddbc
 
 import spock.lang.Specification
 import spock.lang.Unroll
 
 class SampleSpec extends Specification {
 
-    def "should return 'Hello TDD BootCamp!' in Java"() {
+    @Unroll
+    def "カードが #one,#two,#three,#four,#five であるとき、#result になること"() {
 
         given:
-        def sut = new SampleOfJava()
+        def sut = new Cards(one,two,three,four,five)
 
         when:
-        String actual = sut.say()
+        PorkerHand actual = sut.whatHand()
 
         then:
-        actual == 'Hello TDD BootCamp!'
-
-    }
-
-    @Unroll
-    def "should return '#expected' in Groovy"() {
-
-        given:
-        def sut = new SampleOfGroovy()
-
-        expect:
-        sut.say() == expected
+        actual == result
 
         where:
-        expected << ['Hello TDD BootCamp!']
-
+        one | two | three | four | five || result
+        1   | 5   | 7     | 8    | 9    || PorkerHand.ブタ
+        1   | 1   | 3     | 4    | 5    || PorkerHand.ワンペア
+        1   | 1   | 2     | 2    | 5    || PorkerHand.ツーペア
+        1   | 1   | 2     | 2    | 5    || PorkerHand.スリーカード
     }
-
 }
