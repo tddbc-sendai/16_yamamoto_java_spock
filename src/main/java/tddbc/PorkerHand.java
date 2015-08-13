@@ -1,5 +1,5 @@
 package tddbc;
 
 public enum PorkerHand {
-    ブタ, ワンペア, ツーペア, スリーカード
+    ブタ, ワンペア, ツーペア, スリーカード, ストレート
 }

@@ -17,6 +17,12 @@ public class MyCards {
     }
 
     public PorkerHand whatHand() {
+        if (isスリーカード()) {
+            return PorkerHand.スリーカード;
+        }
+        if (isツーペア()) {
+            return PorkerHand.ツーペア;
+        }
         if (isワンペア()) {
             return PorkerHand.ワンペア;
         }
@@ -25,5 +31,13 @@ public class MyCards {
 
     public boolean isワンペア() {
         return Arrays.stream(cards).anyMatch(value -> value == 2);
+    }
+
+    public boolean isツーペア() {
+        return Arrays.stream(cards).filter(value -> value == 2).count() == 2;
+    }
+
+    public boolean isスリーカード() {
+        return Arrays.stream(cards).anyMatch(value -> value == 3);
     }
 }
