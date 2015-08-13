@@ -12,7 +12,7 @@ class SampleSpec extends Specification {
         def sut = new MyCards(one,two,three,four,five)
 
         when:
-        PorkerHand actual = sut.whatHand()
+        def actual = sut.whatHand()
 
         then:
         actual == result
