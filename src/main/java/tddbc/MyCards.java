@@ -13,10 +13,12 @@ public class MyCards {
         cards[three] += 1;
         cards[four] += 1;
         cards[five] += 1;
-
     }
 
     public PorkerHand whatHand() {
+        if (isストレート()) {
+            return PorkerHand.ストレート;
+        }
         if (isスリーカード()) {
             return PorkerHand.スリーカード;
         }
@@ -30,14 +32,42 @@ public class MyCards {
     }
 
     public boolean isワンペア() {
-        return Arrays.stream(cards).anyMatch(value -> value == 2);
+        return Arrays.stream(cards).anyMatch(card -> card == 2);
     }
 
     public boolean isツーペア() {
-        return Arrays.stream(cards).filter(value -> value == 2).count() == 2;
+        return Arrays.stream(cards).filter(card -> card == 2).count() == 2;
     }
 
     public boolean isスリーカード() {
-        return Arrays.stream(cards).anyMatch(value -> value == 3);
+        return Arrays.stream(cards).anyMatch(card -> card == 3);
+    }
+
+    public boolean isストレート() {
+        int[] straightCards = new int[14];
+        int minIndex = getMinIndex(this.cards);
+        straightCards[minIndex++] = 1;
+        straightCards[minIndex++] = 1;
+        straightCards[minIndex++] = 1;
+        straightCards[minIndex++] = 1;
+        straightCards[minIndex] = 1;
+
+        int[] highStraightCards = new int[14];
+        highStraightCards[10] = 1;
+        highStraightCards[11] = 1;
+        highStraightCards[12] = 1;
+        highStraightCards[13] = 1;
+        highStraightCards[1] = 1;
+
+        return Arrays.equals(straightCards, this.cards) || Arrays.equals(highStraightCards, this.cards);
+    }
+
+    private int getMinIndex(int[] straightCards) {
+        int i = 0;
+        for (; i < straightCards.length; i++) {
+            if (straightCards[i] == 1)
+                break;
+        }
+        return i;
     }
 }
